@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "MyItemConnectionString": "server=(localdb)\\ProjectsV13;Database=MyItemDb;Integrated Security=true;MultipleActiveResultSets=true;"
+  }
+}
