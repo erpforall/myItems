@@ -17,6 +17,10 @@ namespace MyNoteApi.Data.Entities
 
         public string Password { get; set; }
 
+        [ForeignKey("Owner")]
+        public int OwnerId { get; set; }
+        public virtual Owner Owner { get; set; }
+
         public virtual ICollection<Log> LogCreatedAt { get; set; }
         public virtual ICollection<Log> LogUpdatedAt { get; set; }
     }

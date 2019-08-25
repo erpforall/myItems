@@ -28,11 +28,11 @@ namespace MyNoteApi.Data.Entities
         public int LogId { get; set; }
         public virtual Log Log { get; set; }
 
-        public ICollection<ItemText> ItemTexts { get; set; }
-        public ICollection<ItemData> ItemDatas { get; set; }
-        public ICollection<Hierarchy> HierarchyItems { get; set; }
-        public ICollection<Hierarchy> HierarchyParentItems { get; set; }
-        public ICollection<ItemAttribute> ItemAttributes { get; set; }
+        public virtual ICollection<ItemText> ItemTexts { get; set; }
+        public virtual ICollection<ItemData> ItemDatas { get; set; }
+        public virtual ICollection<Hierarchy> HierarchyItems { get; set; }
+        public virtual ICollection<Hierarchy> HierarchyParentItems { get; set; }
+        public virtual ICollection<ItemAttribute> ItemAttributes { get; set; }
 
 
 
