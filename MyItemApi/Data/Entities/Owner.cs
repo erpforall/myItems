@@ -18,5 +18,6 @@ namespace MyNoteApi.Data.Entities
         public string Description { get; set; }
 
         public virtual ICollection<Item> Items { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }
