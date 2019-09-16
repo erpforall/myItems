@@ -11,10 +11,11 @@ namespace MyNoteApi.Data.Entities
         [Key]
         public int OwnerId { get; set; }
 
-        [MaxLength(20)]
+        [MaxLength(60)]
         [Required]
         public string Name { get; set; }
 
+        [MaxLength(256)]
         public string Description { get; set; }
 
         public virtual ICollection<Item> Items { get; set; }

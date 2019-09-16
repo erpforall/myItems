@@ -17,7 +17,6 @@ namespace MyNoteApi.Data.Entities
         [MaxLength(60)]
         public string Name { get; set; }
 
-        [MaxLength(100)]
         public bool IsVirtual { get; set; }
 
         [ForeignKey("Owner")]

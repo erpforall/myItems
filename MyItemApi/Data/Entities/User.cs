@@ -13,9 +13,14 @@ namespace MyNoteApi.Data.Entities
         [Key]
         public int UserId { get; set; }
 
+        [MaxLength(20)]
         public string LoginId { get; set; }
 
+        [MaxLength(32)]
         public string Password { get; set; }
+
+        [MaxLength(32)]
+        public string Salt { get; set; }
 
         [ForeignKey("Owner")]
         public int OwnerId { get; set; }

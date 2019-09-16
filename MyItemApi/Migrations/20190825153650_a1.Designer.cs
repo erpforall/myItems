@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyNoteApi.Data;
 
 namespace MyItemApi.Migrations
 {
     [DbContext(typeof(ItemContext))]
-    partial class ItemContextModelSnapshot : ModelSnapshot
+    [Migration("20190825153650_a1")]
+    partial class a1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,8 +27,7 @@ namespace MyItemApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(20);
+                    b.Property<string>("Name");
 
                     b.HasKey("AttributeNameId");
 
@@ -41,8 +42,7 @@ namespace MyItemApi.Migrations
 
                     b.Property<int>("AttributeNameId");
 
-                    b.Property<string>("Value")
-                        .HasMaxLength(20);
+                    b.Property<string>("Value");
 
                     b.HasKey("AttributeValueId");
 
@@ -128,7 +128,8 @@ namespace MyItemApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("IsVirtual");
+                    b.Property<bool>("IsVirtual")
+                        .HasMaxLength(100);
 
                     b.Property<int>("LogId");
 
@@ -163,8 +164,7 @@ namespace MyItemApi.Migrations
                     b.Property<string>("Path")
                         .HasMaxLength(256);
 
-                    b.Property<string>("Title")
-                        .HasMaxLength(60);
+                    b.Property<string>("Title");
 
                     b.Property<byte>("Type");
 
@@ -190,8 +190,7 @@ namespace MyItemApi.Migrations
 
                     b.Property<string>("Text");
 
-                    b.Property<string>("Title")
-                        .HasMaxLength(60);
+                    b.Property<string>("Title");
 
                     b.HasKey("ItemTextId");
 
@@ -209,12 +208,11 @@ namespace MyItemApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Description")
-                        .HasMaxLength(256);
+                    b.Property<string>("Description");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(60);
+                        .HasMaxLength(20);
 
                     b.HasKey("OwnerId");
 
@@ -227,16 +225,11 @@ namespace MyItemApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("LoginId")
-                        .HasMaxLength(20);
+                    b.Property<string>("LoginId");
 
                     b.Property<int>("OwnerId");
 
-                    b.Property<string>("Password")
-                        .HasMaxLength(32);
-
-                    b.Property<string>("Salt")
-                        .HasMaxLength(32);
+                    b.Property<string>("Password");
 
                     b.HasKey("UserId");
 

@@ -1,8 +1,11 @@
 {
   "ConnectionStrings": {
-    "MyItemConnectionString": "server=xxxxxx;Database=myItems1;User Id=xxxxxx;Password=xxxxxx;MultipleActiveResultSets=true;"
+    "MyItemConnectionString": "server=udian14.synology.me,2433;Database=myItems;User Id=sa;Password=Sp1652aa;MultipleActiveResultSets=true;"
   }
   //"ConnectionStrings": {
-  //  "MyItemConnectionString": "server=YY167993\\SQLEXPRESS;Database=MyItems;Integrated Security=true;MultipleActiveResultSets=true;"
+  //  "MyItemConnectionString": "server=erpforall.database.windows.net;Database=myItems1;User Id=erpadmin;Password=Wenzhou81;MultipleActiveResultSets=true;"
+  //}
+  //"ConnectionStrings": {
+  //  "MyItemConnectionString": "server=YY167993\\SQLEXPRESS;Database=MyItems3;Integrated Security=true;MultipleActiveResultSets=true;"
   //}
 }

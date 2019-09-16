@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MyItemApi.Migrations
 {
-    public partial class a5 : Migration
+    public partial class a1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -36,20 +36,6 @@ namespace MyItemApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
-                columns: table => new
-                {
-                    UserId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    LoginId = table.Column<string>(nullable: true),
-                    Password = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.UserId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AttributeValues",
                 columns: table => new
                 {
@@ -66,6 +52,27 @@ namespace MyItemApi.Migrations
                         column: x => x.AttributeNameId,
                         principalTable: "AttributeNames",
                         principalColumn: "AttributeNameId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    UserId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    LoginId = table.Column<string>(nullable: true),
+                    Password = table.Column<string>(nullable: true),
+                    OwnerId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.UserId);
+                    table.ForeignKey(
+                        name: "FK_Users_Owners_OwnerId",
+                        column: x => x.OwnerId,
+                        principalTable: "Owners",
+                        principalColumn: "OwnerId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -328,6 +335,11 @@ namespace MyItemApi.Migrations
                 name: "IX_Logs_UpdatedById",
                 table: "Logs",
                 column: "UpdatedById");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_OwnerId",
+                table: "Users",
+                column: "OwnerId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -357,10 +369,10 @@ namespace MyItemApi.Migrations
                 name: "Logs");
 
             migrationBuilder.DropTable(
-                name: "Owners");
+                name: "Users");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Owners");
         }
     }
 }
