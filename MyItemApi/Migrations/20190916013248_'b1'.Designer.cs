@@ -10,8 +10,8 @@ using MyNoteApi.Data;
 namespace MyItemApi.Migrations
 {
     [DbContext(typeof(ItemContext))]
-    [Migration("20190819044729_'a5'")]
-    partial class a5
+    [Migration("20190916013248_'b1'")]
+    partial class b1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,7 +27,8 @@ namespace MyItemApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .HasMaxLength(20);
 
                     b.HasKey("AttributeNameId");
 
@@ -42,7 +43,8 @@ namespace MyItemApi.Migrations
 
                     b.Property<int>("AttributeNameId");
 
-                    b.Property<string>("Value");
+                    b.Property<string>("Value")
+                        .HasMaxLength(20);
 
                     b.HasKey("AttributeValueId");
 
@@ -128,8 +130,7 @@ namespace MyItemApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("IsVirtual")
-                        .HasMaxLength(100);
+                    b.Property<bool>("IsVirtual");
 
                     b.Property<int>("LogId");
 
@@ -164,7 +165,8 @@ namespace MyItemApi.Migrations
                     b.Property<string>("Path")
                         .HasMaxLength(256);
 
-                    b.Property<string>("Title");
+                    b.Property<string>("Title")
+                        .HasMaxLength(60);
 
                     b.Property<byte>("Type");
 
@@ -190,7 +192,8 @@ namespace MyItemApi.Migrations
 
                     b.Property<string>("Text");
 
-                    b.Property<string>("Title");
+                    b.Property<string>("Title")
+                        .HasMaxLength(60);
 
                     b.HasKey("ItemTextId");
 
@@ -208,11 +211,12 @@ namespace MyItemApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Description")
+                        .HasMaxLength(256);
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(20);
+                        .HasMaxLength(60);
 
                     b.HasKey("OwnerId");
 
@@ -225,11 +229,20 @@ namespace MyItemApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("LoginId");
+                    b.Property<string>("LoginId")
+                        .HasMaxLength(20);
 
-                    b.Property<string>("Password");
+                    b.Property<int>("OwnerId");
+
+                    b.Property<string>("Password")
+                        .HasMaxLength(32);
+
+                    b.Property<string>("Salt")
+                        .HasMaxLength(32);
 
                     b.HasKey("UserId");
+
+                    b.HasIndex("OwnerId");
 
                     b.ToTable("Users");
                 });
@@ -328,6 +341,14 @@ namespace MyItemApi.Migrations
                         .WithOne("ItemText")
                         .HasForeignKey("MyNoteApi.Data.Entities.ItemText", "LogId")
                         .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("MyNoteApi.Data.Entities.User", b =>
+                {
+                    b.HasOne("MyNoteApi.Data.Entities.Owner", "Owner")
+                        .WithMany("Users")
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

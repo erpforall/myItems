@@ -17,6 +17,7 @@ namespace MyNoteApi.Data.Entities
         public int ItemId { get; set; }
         public virtual Item Item { get; set; }
 
+        [MaxLength(60)]
         public string Title { get; set; }
 
         public string Text { get; set; }

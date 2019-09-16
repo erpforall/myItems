@@ -12,6 +12,7 @@ namespace MyItemApi.Data.Entities
         [Key]
         public int AttributeValueId { get; set; }
 
+        [MaxLength(20)]
         public string Value { get; set; }
 
         [ForeignKey("AttributeName")]
