@@ -27,8 +27,8 @@ namespace MyItemApi.Migrations
                 {
                     OwnerId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(maxLength: 20, nullable: false),
-                    Description = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(maxLength: 60, nullable: false),
+                    Description = table.Column<string>(maxLength: 256, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -61,8 +61,9 @@ namespace MyItemApi.Migrations
                 {
                     UserId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    LoginId = table.Column<string>(nullable: true),
-                    Password = table.Column<string>(nullable: true),
+                    LoginId = table.Column<string>(maxLength: 20, nullable: true),
+                    Password = table.Column<string>(maxLength: 32, nullable: true),
+                    Salt = table.Column<string>(maxLength: 32, nullable: true),
                     OwnerId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -111,7 +112,7 @@ namespace MyItemApi.Migrations
                     ItemId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(maxLength: 60, nullable: false),
-                    IsVirtual = table.Column<bool>(maxLength: 100, nullable: false),
+                    IsVirtual = table.Column<bool>(nullable: false),
                     OwnerId = table.Column<int>(nullable: false),
                     LogId = table.Column<int>(nullable: false)
                 },
@@ -205,7 +206,7 @@ namespace MyItemApi.Migrations
                     ItemDataId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ItemId = table.Column<int>(nullable: false),
-                    Title = table.Column<string>(nullable: true),
+                    Title = table.Column<string>(maxLength: 60, nullable: true),
                     Type = table.Column<byte>(nullable: false),
                     Data = table.Column<byte[]>(nullable: true),
                     Path = table.Column<string>(maxLength: 256, nullable: true),
@@ -235,7 +236,7 @@ namespace MyItemApi.Migrations
                     ItemTextId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ItemId = table.Column<int>(nullable: false),
-                    Title = table.Column<string>(nullable: true),
+                    Title = table.Column<string>(maxLength: 60, nullable: true),
                     Text = table.Column<string>(nullable: true),
                     LogId = table.Column<int>(nullable: false)
                 },

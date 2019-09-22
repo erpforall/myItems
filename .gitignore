@@ -30,3 +30,6 @@ msbuild.wrn
 
 # Visual Studio 2015
 .vs/
+/MyItemApi/Migrations/20190819044729_'a5'.cs
+/MyItemApi/Migrations/20190819044729_'a5'.Designer.cs
+/test1.txt

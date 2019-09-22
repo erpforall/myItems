@@ -20,8 +20,8 @@ namespace MyItemApi.Model
         [Required]
         public int OwnerId { get; set; }
 
-        public List<ItemTextView> ItemTexts { get; set; }
-        public List<ItemDataView> ItemDatas { get; set; }
+        public List<ItemTextView> ItemTextViews { get; set; }
+        public List<ItemDataView> ItemDataViews { get; set; }
 
     }
 }
