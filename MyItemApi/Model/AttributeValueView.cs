@@ -1,23 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MyItemApi.Data.Entities
+namespace MyItemApi.Model
 {
-    public class AttributeValue
+    public class AttributeValueView
     {
-        [Key]
         public int AttributeValueId { get; set; }
 
+        [Required]
         public string Value { get; set; }
 
-        [ForeignKey("AttributeName")]
+        [Required]
         public int AttributeNameId { get; set; }
-        public virtual AttributeName AttributeName { get; set; }
 
-        public ICollection<ItemAttribute> ItemAttributes { get; set; }
     }
 }

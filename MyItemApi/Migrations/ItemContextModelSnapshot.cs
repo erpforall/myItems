@@ -25,8 +25,7 @@ namespace MyItemApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(20);
+                    b.Property<string>("Name");
 
                     b.HasKey("AttributeNameId");
 
@@ -41,8 +40,7 @@ namespace MyItemApi.Migrations
 
                     b.Property<int>("AttributeNameId");
 
-                    b.Property<string>("Value")
-                        .HasMaxLength(20);
+                    b.Property<string>("Value");
 
                     b.HasKey("AttributeValueId");
 
@@ -57,6 +55,8 @@ namespace MyItemApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("AttributeNameId");
+
                     b.Property<int>("AttributeValueId");
 
                     b.Property<int>("ItemId");
@@ -64,6 +64,8 @@ namespace MyItemApi.Migrations
                     b.Property<int>("LogId");
 
                     b.HasKey("ItemAttributeId");
+
+                    b.HasIndex("AttributeNameId");
 
                     b.HasIndex("AttributeValueId");
 
@@ -255,6 +257,11 @@ namespace MyItemApi.Migrations
 
             modelBuilder.Entity("MyItemApi.Data.Entities.ItemAttribute", b =>
                 {
+                    b.HasOne("MyItemApi.Data.Entities.AttributeName", "AttributeName")
+                        .WithMany()
+                        .HasForeignKey("AttributeNameId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("MyItemApi.Data.Entities.AttributeValue", "AttributeValue")
                         .WithMany("ItemAttributes")
                         .HasForeignKey("AttributeValueId")

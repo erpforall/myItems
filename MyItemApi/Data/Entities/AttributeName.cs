@@ -11,7 +11,6 @@ namespace MyItemApi.Data.Entities
         [Key]
         public int AttributeNameId { get; set; }
 
-        [MaxLength(20)]
         public string Name { get; set; }
 
         public virtual ICollection<AttributeValue> AttributeValues { get; set; }

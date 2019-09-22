@@ -10,8 +10,8 @@ using MyNoteApi.Data;
 namespace MyItemApi.Migrations
 {
     [DbContext(typeof(ItemContext))]
-    [Migration("20190916013248_'b1'")]
-    partial class b1
+    [Migration("20190920053022_'a1'")]
+    partial class a1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,8 +27,7 @@ namespace MyItemApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(20);
+                    b.Property<string>("Name");
 
                     b.HasKey("AttributeNameId");
 
@@ -43,8 +42,7 @@ namespace MyItemApi.Migrations
 
                     b.Property<int>("AttributeNameId");
 
-                    b.Property<string>("Value")
-                        .HasMaxLength(20);
+                    b.Property<string>("Value");
 
                     b.HasKey("AttributeValueId");
 

@@ -37,7 +37,8 @@ namespace MyItemApi
 
             services.AddAutoMapper();
             services.AddTransient<DataSeeder>();
-            services.AddScoped<IRepository, Repository>();
+            services.AddScoped<IItemRepository, ItemRepository>();
+            services.AddScoped<IAttributeRepository, AttributeRepository>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
