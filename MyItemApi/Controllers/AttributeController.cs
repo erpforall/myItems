@@ -22,7 +22,61 @@ namespace MyItemApi.Controllers
         }
 
 
-        // GET: api/Item/5
+        // GET: api/category/5
+        [HttpGet("category/{id}")]
+        public async Task<ActionResult<AttributeCategoryView>> GetCategory(int id)
+        {
+            var attributeCategoryView = await _attributeRepository.GetAttributeCategoryById(id);
+
+            if (attributeCategoryView == null)
+            {
+                return NotFound();
+            }
+
+            return attributeCategoryView;
+        }
+
+        // POST: api/Category
+        [HttpPost("Category")]
+        public async Task<ActionResult<AttributeCategoryView>> PostCategory([FromBody] AttributeCategoryView attrCategoryView)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var createdeattrCategoryView = await _attributeRepository.AddAttributeCategory(attrCategoryView.Name);
+
+                    return CreatedAtAction("Get", new { id = createdeattrCategoryView.AttributeCategoryId }, createdeattrCategoryView);
+                }
+                else
+                {
+                    return BadRequest(ModelState);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return BadRequest("Failed to save the AttributeCategory");
+        }
+
+
+        // DELETE: api/category/5
+        [HttpDelete("category/{id}")]
+        public async Task DeleteCategory(int id)
+        {
+            await _attributeRepository.DeleteAttributeCategoryById(id);
+        }
+
+
+        // GET: api/name?categoryId=1
+        [HttpGet("name")]
+        public async Task<IEnumerable<AttributeNameView>> GetAttributeNames(int categoryId, bool includeValues = false)
+        {
+            return await _attributeRepository.GetAttributeNamesByCategoryId(categoryId, includeValues);
+        }
+
+        // GET: api/name/5
         [HttpGet("name/{id}")]
         public async Task<ActionResult<AttributeNameView>> Get(int id)
         {
@@ -36,7 +90,7 @@ namespace MyItemApi.Controllers
             return attributeNameView;
         }
 
-        // POST: api/Item
+        // POST: api/name
         [HttpPost("name")]
         public async Task<ActionResult<AttributeNameView>> Post([FromBody] AttributeNameView attrNameView)
         {
@@ -61,14 +115,22 @@ namespace MyItemApi.Controllers
         }
 
 
-        // GET: api/Item/5
+        // DELETE: api/name/5
         [HttpDelete("name/{id}")]
         public async Task Delete(int id)
         {
             await _attributeRepository.DeleteAttributeNameById(id);
         }
 
-        // GET: api/Item/5
+
+        // GET: api/value?nameId=1
+        [HttpGet("value")]
+        public async Task<IEnumerable<AttributeValueView>> GetAttributeValues(int nameId)
+        {
+            return await _attributeRepository.GetAttributeValuesByNameId(nameId);
+        }
+
+        // GET: api/value/5
         [HttpGet("value/{id}")]
         public async Task<ActionResult<AttributeValueView>> GetValue(int id)
         {
@@ -80,7 +142,7 @@ namespace MyItemApi.Controllers
             return attributeValueView;
         }
 
-        // POST: api/Item
+        // POST: api/value
         [HttpPost("value")]
         public async Task<ActionResult<AttributeValueView>> PostValue([FromBody] AttributeValueView attrValueView)
         {
@@ -104,7 +166,7 @@ namespace MyItemApi.Controllers
             return BadRequest("Failed to save the AttributeValue");
         }
 
-        // GET: api/Item/5
+        // GET: api/value/5
         [HttpDelete("value/{id}")]
         public async Task DeleteValue(int id)
         {

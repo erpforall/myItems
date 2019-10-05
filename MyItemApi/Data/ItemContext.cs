@@ -17,6 +17,7 @@ namespace MyNoteApi.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Log> Logs { get; set; }
         public DbSet<Owner> Owners { get; set; }
+        public DbSet<AttributeCategory> AttributeCategories { get; set; }
         public DbSet<AttributeName> AttributeNames { get; set; }
         public DbSet<AttributeValue> AttributeValues { get; set; }
         public DbSet<Item> Items { get; set; }

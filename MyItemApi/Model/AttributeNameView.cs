@@ -10,6 +10,9 @@ namespace MyItemApi.Model
         [Required]
         public string Name { get; set; }
 
+        [Required]
+        public string AttributeCategoryId { get; set; }
+
         public List<AttributeValueView> AttributeValueViews { get; set; }
 
     }
