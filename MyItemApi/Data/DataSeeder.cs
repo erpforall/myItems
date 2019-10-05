@@ -44,6 +44,15 @@ namespace MyItemApi.Data
                 await _ctx.SaveChangesAsync();
             }
 
+            if (!_ctx.AttributeCategories.Any())
+            {
+                var filepath = Path.Combine(_hosting.ContentRootPath, "Data/AttributeCategory.json");
+                var json = File.ReadAllText(filepath);
+                var attributeCategories = JsonConvert.DeserializeObject<IEnumerable<AttributeCategory>>(json);
+                _ctx.AttributeCategories.AddRange(attributeCategories);
+                await _ctx.SaveChangesAsync();
+            }
+
             if (!_ctx.AttributeNames.Any())
             {
                 var filepath = Path.Combine(_hosting.ContentRootPath, "Data/AttributeName.json");

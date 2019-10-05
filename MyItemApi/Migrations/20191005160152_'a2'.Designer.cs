@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyNoteApi.Data;
 
 namespace MyItemApi.Migrations
 {
     [DbContext(typeof(ItemContext))]
-    partial class ItemContextModelSnapshot : ModelSnapshot
+    [Migration("20191005160152_'a2'")]
+    partial class a2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,7 +31,7 @@ namespace MyItemApi.Migrations
 
                     b.HasKey("AttributeCategoryId");
 
-                    b.ToTable("AttributeCategories");
+                    b.ToTable("AttributeCategory");
                 });
 
             modelBuilder.Entity("MyItemApi.Data.Entities.AttributeName", b =>
@@ -38,7 +40,7 @@ namespace MyItemApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AttributeCategoryId");
+                    b.Property<int?>("AttributeCategoryId");
 
                     b.Property<string>("Name");
 
@@ -264,8 +266,7 @@ namespace MyItemApi.Migrations
                 {
                     b.HasOne("MyItemApi.Data.Entities.AttributeCategory", "AttributeCategory")
                         .WithMany("AttributeNames")
-                        .HasForeignKey("AttributeCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("AttributeCategoryId");
                 });
 
             modelBuilder.Entity("MyItemApi.Data.Entities.AttributeValue", b =>

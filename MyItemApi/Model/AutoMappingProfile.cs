@@ -31,6 +31,12 @@ namespace MyItemApi.Model
             CreateMap<Hierarchy, HierarchyView>()
                 .ReverseMap();
 
+            CreateMap<AttributeCategory, AttributeCategoryView>()
+                .ForMember(dest => dest.AttributeNameViews, ex => ex.MapFrom(src => (src.AttributeNames)));
+
+            CreateMap<AttributeCategoryView, AttributeCategory>()
+                .ForMember(dest => dest.AttributeNames, ex => ex.MapFrom(src => (src.AttributeNameViews)));
+
             CreateMap<AttributeName, AttributeNameView>()
                 .ForMember(dest => dest.AttributeValueViews, ex => ex.MapFrom(src => (src.AttributeValues)));
 

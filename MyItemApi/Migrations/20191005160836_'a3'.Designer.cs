@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyNoteApi.Data;
 
 namespace MyItemApi.Migrations
 {
     [DbContext(typeof(ItemContext))]
-    partial class ItemContextModelSnapshot : ModelSnapshot
+    [Migration("20191005160836_'a3'")]
+    partial class a3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,7 +31,7 @@ namespace MyItemApi.Migrations
 
                     b.HasKey("AttributeCategoryId");
 
-                    b.ToTable("AttributeCategories");
+                    b.ToTable("AttributeCategory");
                 });
 
             modelBuilder.Entity("MyItemApi.Data.Entities.AttributeName", b =>
