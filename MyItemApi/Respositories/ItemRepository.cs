@@ -213,5 +213,11 @@ namespace MyItemApi.Respositories
 
         }
 
+        public async Task<IEnumerable<ItemView>> SearchItemViewsWithOwnerId(int ownerId, string searchName)
+        {
+            var items = await _context.Items.Where(n => (n.OwnerId == ownerId) && n.Name.Contains(searchName)).ToListAsync();
+
+            return _mapper.Map<IEnumerable<Item>, IEnumerable<ItemView>>(items);
+        }
     }
 }

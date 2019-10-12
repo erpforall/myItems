@@ -11,6 +11,7 @@ namespace MyItemApi.Respositories
         Task<ItemView> AddItemView(ItemView itemView);
         Task<ItemView> GetItemViewById(int itemId);
         Task<IEnumerable<ItemView>> GetItemViewsByOwnerId(int ownerId);
+        Task<IEnumerable<ItemView>> SearchItemViewsWithOwnerId(int ownerId, string searchName);
         Task<HierarchyView> GetHierarchyById(int hierarchyId);
         Task<HierarchyView> AddHierarchy(HierarchyView hierarchyView);
         Task<IEnumerable<HierarchyView>> GetHierarchyViewsByParentHierarchyId(int parentHierarchyId);
