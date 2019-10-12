@@ -27,6 +27,13 @@ namespace MyItemApi.Controllers
             return await _itemRepository.GetItemViewsByOwnerId(ownerId);
         }
 
+        // GET: api/Item
+        [HttpGet]
+        public async Task<IEnumerable<ItemView>> SearchItems(int ownerId, string searchName)
+        {
+            return await _itemRepository.SearchItemViewsWithOwnerId(ownerId, searchName);
+        }
+
         // GET: api/Item/5
         [HttpGet("{id}", Name = "Get")]
         public async Task<ItemView> Get(int id)

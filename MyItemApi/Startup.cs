@@ -35,6 +35,11 @@ namespace MyItemApi
                 cfg.UseSqlServer(Configuration.GetConnectionString("MyItemConnectionString"));
             });
 
+            //services.AddDbContext<ItemContext>(cfg =>
+            //{
+            //    cfg.UseInMemoryDatabase(Configuration.GetConnectionString("MyItemConnectionString"));
+            //});
+
             services.AddAutoMapper();
             services.AddTransient<DataSeeder>();
             services.AddScoped<IItemRepository, ItemRepository>();
