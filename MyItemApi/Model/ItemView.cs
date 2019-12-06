@@ -22,6 +22,6 @@ namespace MyItemApi.Model
 
         public List<ItemTextView> ItemTextViews { get; set; }
         public List<ItemDataView> ItemDataViews { get; set; }
-
+        public List<ItemAttributeView> ItemAttributeViews { get; set; }
     }
 }

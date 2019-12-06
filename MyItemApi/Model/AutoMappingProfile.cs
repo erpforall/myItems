@@ -23,10 +23,14 @@ namespace MyItemApi.Model
                 .ReverseMap();
 
             CreateMap<Item, ItemView>()
-                .ForMember(dest => dest.ItemTextViews, ex => ex.MapFrom(src => (src.ItemTexts)));
+                .ForMember(dest => dest.ItemTextViews, ex => ex.MapFrom(src => (src.ItemTexts)))
+                .ForMember(dest => dest.ItemDataViews, ex => ex.MapFrom(src => (src.ItemDatas)))
+                .ForMember(dest => dest.ItemAttributeViews, ex => ex.MapFrom(src => (src.ItemAttributes)));
 
             CreateMap<ItemView, Item>()
-                .ForMember(dest => dest.ItemTexts, ex => ex.MapFrom(src => (src.ItemTextViews)));
+                .ForMember(dest => dest.ItemTexts, ex => ex.MapFrom(src => (src.ItemTextViews)))
+                .ForMember(dest => dest.ItemDatas, ex => ex.MapFrom(src => (src.ItemDataViews)))
+                .ForMember(dest => dest.ItemAttributes, ex => ex.MapFrom(src => (src.ItemAttributeViews)));
 
             CreateMap<Hierarchy, HierarchyView>()
                 .ReverseMap();

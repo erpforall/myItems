@@ -108,6 +108,15 @@ namespace MyItemApi.Respositories
                 }
             }
 
+            if (newItem.ItemAttributes != null)
+            {
+                foreach (var itemAttribute in newItem.ItemAttributes)
+                {
+                    Log log3 = new Log { CreatedById = 2, CreatedAt = DateTime.UtcNow, UpdatedById = 2, UpdatedAt = DateTime.UtcNow };
+                    itemAttribute.Log = log3;
+                }
+            }
+
             _context.Add(newItem);
             await _context.SaveChangesAsync();
 
@@ -200,7 +209,7 @@ namespace MyItemApi.Respositories
 
         public async Task<ItemView> GetItemViewById(int itemId)
         {
-            var item = await _context.Items.Include(i => i.ItemTexts).Include(i=>i.ItemDatas).FirstOrDefaultAsync(i => i.ItemId == itemId);
+            var item = await _context.Items.Include(i => i.ItemTexts).Include(i=>i.ItemDatas).Include(i => i.ItemAttributes).FirstOrDefaultAsync(i => i.ItemId == itemId);
 
             return _mapper.Map<Item, ItemView>(item);
         }
