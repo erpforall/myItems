@@ -98,7 +98,7 @@ namespace MyItemApi.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var createdeattrNameView = await _attributeRepository.AddAttributeName(attrNameView.Name);
+                    var createdeattrNameView = await _attributeRepository.AddAttributeName(attrNameView.Name, attrNameView.AttributeCategoryId);
 
                     return CreatedAtAction("Get", new { id = createdeattrNameView.AttributeNameId }, createdeattrNameView);
                 }

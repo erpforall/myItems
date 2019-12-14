@@ -31,9 +31,9 @@ namespace MyItemApi.Respositories
             return _mapper.Map<AttributeCategory, AttributeCategoryView>(attributeCategory);
         }
 
-        public async Task<AttributeNameView> AddAttributeName(string attrName)
+        public async Task<AttributeNameView> AddAttributeName(string attrName, int categoryId)
         {
-            AttributeName attributeName = new AttributeName { Name = attrName };
+            AttributeName attributeName = new AttributeName { Name = attrName, AttributeCategoryId = categoryId };
 
             _context.AttributeNames.Add(attributeName);
             await _context.SaveChangesAsync();
