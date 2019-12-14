@@ -11,7 +11,7 @@ namespace MyItemApi.Model
         public string Name { get; set; }
 
         [Required]
-        public string AttributeCategoryId { get; set; }
+        public int AttributeCategoryId { get; set; }
 
         public List<AttributeValueView> AttributeValueViews { get; set; }
 

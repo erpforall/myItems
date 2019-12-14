@@ -13,7 +13,7 @@ namespace MyItemApi.Respositories
         Task<AttributeCategoryView> UpdateAttributeCategory(int attrCategoryId, string attrCategoryName);
         Task DeleteAttributeCategoryById(int attributeCategoryId);
 
-        Task<AttributeNameView> AddAttributeName(string attrName);
+        Task<AttributeNameView> AddAttributeName(string attrName, int categoryId);
         Task<IEnumerable<AttributeNameView>> GetAttributeNamesByCategoryId(int attrCategoryId, bool includeValues);
         Task<AttributeNameView> GetAttributeNameById(int attrNameId);
         Task<AttributeNameView> UpdateAttributeName(int attrNameId, string attrName, int categoryId);
